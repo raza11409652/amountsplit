@@ -169,6 +169,7 @@ console.log(temp);
 console.log('transaction on ' + secondTransaction);
 console.log(tempB);
 
+console.log(`--------------------Till transaction grouped basis of transaction date that is 7th day from starting date---------------------`);
 // console.log(temp);
 var users  = expendedBy
 // for (let index = 0; index < temp.length; index++) {
