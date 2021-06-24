@@ -23,4 +23,14 @@ const populateTransaction = (input , users)=>{
     return result 
 }
 
-module.exports =  {populateTransaction}
+const isValidRange = (dateA , dateB)=>{
+    var nextSevenDay  = new Date(dateA).setDate(dateA.getDate() + 6 )
+    // console.log(nextSevenDay);
+    nextSevenDay = new Date(nextSevenDay)
+    // console.log(nextSevenDay);
+    if(dateB<nextSevenDay){
+        return true
+    }
+    return false
+}
+module.exports =  {populateTransaction , isValidRange}
