@@ -23,9 +23,6 @@ const totalUser = expendedBy.length
 
 // console.log(totalUser);
 
-/**
- * list of first 7 days
- */
 
 var result = [] 
 
@@ -57,7 +54,7 @@ result.forEach(element=>{
 transactionDates  = transactionDates.filter((item, i, ar) => ar.indexOf(item) === i)
 // console.log(transactionDates);
 
-const _data = [] ; 
+// const _data = [] ; 
 
 var startDate = transactionDates[0]
 var endDate = transactionDates[transactionDates.length-1]
@@ -68,7 +65,7 @@ endDate = new Date(endDate)
 endDate = new Date(endDate.setDate(endDate.getDate() +1 ))
 
 // console.log(result);
-console.log(startDate , endDate);
+// console.log(startDate , endDate);
 
 
 
@@ -169,28 +166,137 @@ console.log(temp);
 console.log('transaction on ' + secondTransaction);
 console.log(tempB);
 
-console.log(`--------------------Till transaction grouped basis of transaction date that is 7th day from starting date---------------------`);
+console.log(`-------------------- Till transaction grouped basis of transaction date that is 7th day from starting date---------------------`);
 // console.log(temp);
-var users  = expendedBy
-// for (let index = 0; index < temp.length; index++) {
-//     const element = temp[index];
-    // console.log(element);
-    for (let k = 0; k < expendedBy.length; k++) {
-        const expendedby = expendedBy[k];
-        // console.log(expendedby);
-        for (let j = 0; j < users.length; j++) {
-            const currentUser = users[j];
-            var total = 0 
-            temp.forEach(item=>{
-                if(expendedby!==currentUser &&item.expendedby===expendedby && item.user ===currentUser ){
-                    // console.log(item);
-                    // var total =
-                
-                }
-            })
+
+
+// temp.forEach(data=>{
+//     // console.log(data);
+    
+// })
+var users = expendedBy
+//create relation table
+var relation = [] 
+
+for (let index = 0; index < expendedBy.length; index++) {
+    const element = expendedBy[index];
+    for (let j = 0; j < users.length; j++) {
+        const user = users[j];
+        if(element!==user){
+            const item = {
+                payable:user , 
+                expendedBy:element
+            }
+            relation.push(item)
+            // console.log(relation);
         }
         
     }
+    
+}
+
+console.log(relation);
+// for (let index = 0; index < expendedBy.length; index++) {
+//     const element = expendedBy[index];
+//     // const nextUser = expendedBy[index+1]
+//     // // console.log(element);
+//     // if( nextUser!==undefined || nextUser!==null ){
+//     //     console.log(element , nextUser);
+//     // }
+//     for (let j = 0; j < users.length; j++) {
+//         const nextUser = users[j];
+//         if(element!==nextUser){
+//             // console.log(element , nextUser);
+//             var total  = 0 
+//             temp.forEach(item=>{
+
+//                 // console.log(item);
+//                 if(item.user ===nextUser && item.expendedBy===element){
+//                     console.log(item);
+//                     total = item.amount
+//                     console.log(total);
+
+//                 }
+//             })
+//         }
+        
+//     }
+// }
+
+
+const tempArray = [] 
+for (let index = 0; index < relation.length; index++) {
+    const element = relation[index];
+    // console.log(element);
+    temp.forEach(item=>{
+        if(item.expendedBy === element.expendedBy &&  item.user ===element.payable){
+            // console.log(element);
+            console.log(item.amount)
+            const  single = {
+                amount : item.amount ,
+                relation :element
+            }
+            tempArray.push(single)
+            // console.log(te);
+        }
+    })
+    
+}
+for (let index = 0; index < relation.length; index++) {
+    const element = relation[index];
+    // console.log(element);
+    tempB.forEach(item=>{
+        if(item.expendedBy === element.expendedBy &&  item.user ===element.payable){
+            // console.log(element);
+            // console.log(item.amount)
+            const  single = {
+                amount : item.amount ,
+                relation :element
+            }
+            tempArray.push(single)
+            // console.log(te);
+        }
+    })
+    
+}
+tempArray.forEach(item=>{
+    relation.forEach(data=>{
+        if(data.expendedBy === item.relation.expendedBy && data.payable ===item.relation.payable){
+            console.log(item);
+        }
+    })
+})
+
+// // console.log(tempArray);
+// for (let index = 0; index < relation.length; index++) {
+//     const element = relation[index];
+//     // console.log(element);
+//     var total = 0 
+   
+//     console.log(total);
+    
+// }
+
+// var users  = expendedBy
+// // for (let index = 0; index < temp.length; index++) {
+// //     const element = temp[index];
+//     // console.log(element);
+//     for (let k = 0; k < expendedBy.length; k++) {
+//         const expendedby = expendedBy[k];
+//         // console.log(expendedby);
+//         for (let j = 0; j < users.length; j++) {
+//             const currentUser = users[j];
+//             var total = 0 
+//             temp.forEach(item=>{
+//                 if(expendedby!==currentUser &&item.expendedby===expendedby && item.user ===currentUser ){
+//                     // console.log(item);
+//                     // var total =
+                
+//                 }
+//             })
+//         }
+        
+//     }
     
 // }
 
